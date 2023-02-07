@@ -11,22 +11,25 @@ class MainActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityMainBinding
 	private lateinit var mediaImageCursorLoader: MediaImageCursorLoader
+	private lateinit var dummyImageMaker: DummyImageMaker
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		mediaImageCursorLoader = MediaImageCursorLoader(applicationContext)
+//		mediaImageCursorLoader = MediaImageCursorLoader(applicationContext)
+//		mediaImageCursorLoader.getMediaImageCursor().use { cursor ->
+//			if (cursor != null && cursor.moveToNext()) {
+//				cursor.columnNames.forEach {
+//					binding.textContainer.addView(createTextView("columnName: $it"))
+//					binding.textContainer.addView(createTextView("\n"))
+//				}
+//			}
+//		}
 
-		mediaImageCursorLoader.getMediaImageCursor().use { cursor ->
-			if (cursor != null && cursor.moveToNext()) {
-				cursor.columnNames.forEach {
-					binding.textContainer.addView(createTextView("columnName: $it"))
-					binding.textContainer.addView(createTextView("\n"))
-				}
-			}
-		}
+		dummyImageMaker = DummyImageMaker(this)
+		dummyImageMaker.createDummyImage()
 	}
 
 	private fun createTextView(text: String): TextView {

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityMainBinding
 	private lateinit var mediaImageCursorLoader: MediaImageCursorLoader
-	private lateinit var dummyImageMaker: DummyImageMaker
+	private lateinit var dummyImageMakerForAndroid9Below: DummyImageMakerForAndroid9Below
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity() {
 //			}
 //		}
 
-		dummyImageMaker = DummyImageMaker(this)
-		dummyImageMaker.createDummyImage()
+		binding.button.setOnClickListener {
+			dummyImageMakerForAndroid9Below = DummyImageMakerForAndroid9Below(this)
+			dummyImageMakerForAndroid9Below.createDummyImage()
+		}
 	}
 
 	private fun createTextView(text: String): TextView {
